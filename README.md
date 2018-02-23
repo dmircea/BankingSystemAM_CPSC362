@@ -1,7 +1,7 @@
-# BankingSystemAM_CPSC362
-Project for CPSC 362: Software Engineering. Banking system build in C++.
+BankingSystemAM_CPSC362
+Project for CPSC 362: Software Engineering. Banking system built in C++.
 
 Developers:     
-Mircea Dumitrache
+Mircea Dumitrache,
 Ahzaz Laeeque
                 
