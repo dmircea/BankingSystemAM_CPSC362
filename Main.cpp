@@ -14,6 +14,18 @@ int main()
 
 	int loginOrOpen = isCurrent();
 
+	switch (loginOrOpen)
+	{
+	case 0:
+	    std::cout << "You were given option " << loginOrOpen << std::endl;
+	    break;
+	case 1:
+	    std::cout << "You were given option " << loginOrOpen << std::endl;
+	    break;
+	case 2:
+	    std::cout << "You were given option " << loginOrOpen << std::endl;
+	    break;
+	}
 
 	Goodbye();
 
