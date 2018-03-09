@@ -8,4 +8,5 @@ struct Phone
 	int areaCode = 0;
 	int number = 0;
 	Type type = home;
+	bool usable = false;
 };

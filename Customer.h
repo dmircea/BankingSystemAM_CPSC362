@@ -18,16 +18,23 @@ public:
 
     //---------Age prototype member functions--------------------
     int getAge();
+    void setAge(int);
+
+    //---------Genger prototype member function------------------
+    char getGender();
+    void setGender();
 
     //---------Address prototype member functions-------------------
     //----set functions------//
     void setNumberAddress(int);
+    void setHouseNum(int);
     void setZipAddress(int);
     void setStreetAddress(std::string);
     void setCityAddress(std::string);
     void setStateAddress(std::string);
     //----get functions------//
     int getNumberAddress();
+    int getHouseNum();
     int getZipAddress();
     std::string getStreetAddress();
     std::string getCityAddress();
@@ -48,10 +55,12 @@ public:
     void setAreaCode(int,int);
     void setPhoneNumber(int,int);
     void setType(Type, int);
+    void setUsed(bool, int);
     //-------get functions-------//
     int getAreaCode(int);
     int getPhoneNumber(int);
     Type getType(int);
+    bool getUsed(int);
 
 	Customer() 
 	{
@@ -61,6 +70,9 @@ public:
 	{
 
 	}
+
+	// Non-set/get Member functions
+
 private:
 	Address _addressInfo;//Struct--> see Address.h header file
 	Phone _phoneInfo[4];	//Struct--> see Phone.h header file
@@ -83,16 +95,34 @@ std::string inline Customer::getEmail()
     return _email;
 }
 
-//-----------Age scoped function------------------------
+//-----------Age scoped functions------------------------
 int inline Customer::getAge()
 {
     return _age;
+}
+void inline Customer::setAge(int newAge)
+{
+    _age = newAge;
+}
+
+//-----------Gender Scoped functions---------------------
+char inline Customer::getGender()
+{
+    return _gender;
+}
+void inline Customer::setGender(char newGender)
+{
+    _gender = newGender;
 }
 
 //-----------Address Scoped functions SETTING------------------
 void inline Customer::setNumberAddress(int newNumber)
 {
     _addressInfo.number = newNumber;
+}
+void inline Customer::setHouseNum(int newNumber)
+{
+    _addressInfo.houseNum = newNumber;
 }
 void inline Customer::setZipAddress(int newZipcode)
 {
@@ -111,10 +141,15 @@ void inline Customer::setCityAddress(std::string newCity)
     _addressInfo.city = newCity;
 }
 
+
 //-----------Address Scoped functions GETTING------------------
 int inline Customer::getNumberAddress()
 {
     return _addressInfo.number;
+}
+int inline Customer::getHouseNum()
+{
+    return _addressInfo.houseNum;
 }
 int inline Customer::getZipAddress()
 {
@@ -132,6 +167,7 @@ std::string inline Customer::getCityAddress()
 {
     return _addressInfo.city;
 }
+
 
 //------------Name Scoped functions SETTING--------------------
 void inline Customer::setFirstName(std::string newFirstName)
@@ -167,5 +203,56 @@ void inline Customer::setAreaCode(int newAreaCode, int whichPhone)
     if (whichPhone < 4 && whichPhone >= 0)
     {
 	   _phoneInfo[whichPhone].areaCode = newAreaCode;
+    }
+}
+void inline Customer::setPhoneNumber(int newPhoneNum, int whichPhone)
+{
+    if (whichPhone < 4 && whichPhone >= 0)
+    {
+	   _phoneInfo[whichPhone].number = newPhoneNum;
+    }
+}
+void inline Customer::setType(Type newType, int whichPhone)
+{
+    if (whichPhone < 4 && whichPhone >= 0)
+    {
+	   _phoneInfo[whichPhone].type = newType;
+    }
+}
+void inline Customer::setUsed(bool newBool, int whichPhone)
+{
+    if (whichPhone < 4 && whichPhone >= 0)
+    {
+	   _phoneInfo[whichPhone].usable = newBool;
+    }
+}
+
+//------------Phone Scoped functions GETTING--------------------------
+int inline Customer::getAreaCode(int whichPhone)
+{
+    if (whichPhone < 4 && whichPhone >= 0)
+    {
+	   return _phoneInfo[whichPhone].areaCode;
+    }
+}
+int inline Customer::getPhoneNumber(int whichPhone)
+{
+    if (whichPhone < 4 && whichPhone >= 0)
+    {
+	   return _phoneInfo[whichPhone].number;
+    }
+}
+Type inline Customer::getType(int whichPhone)
+{
+    if (whichPhone < 4 && whichPhone >= 0)
+    {
+	   return _phoneInfo[whichPhone].type;
+    }
+}
+bool inline Customer::getUsed(int whichPhone)
+{
+    if (whichPhone < 4 && whichPhone >= 0)
+    {
+	   return _phoneInfo[whichPhone].usable;
     }
 }

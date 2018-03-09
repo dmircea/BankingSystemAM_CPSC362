@@ -6,6 +6,7 @@
 #include<string>
 
 #include"ConversationFunctions.h"
+#include"Register.h"
 
 int main()
 {

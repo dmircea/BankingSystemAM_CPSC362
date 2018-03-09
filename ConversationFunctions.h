@@ -1,4 +1,5 @@
 #pragma once
+#include "Customer.h"
 
 //This will include all the conversation functions.
 
@@ -44,6 +45,7 @@ int isCurrent()
 			else
 			{
 				std::cout << "Answer typed is not known. Please try again." << std::endl;
+				std::cin.ignore(INT_MAX, '\n');
 			}
 
 		}
