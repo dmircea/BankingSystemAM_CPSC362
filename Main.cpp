@@ -4,7 +4,9 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include<stdlib.h>
 
+#include"clearCin.h"
 #include"ConversationFunctions.h"
 #include"Register.h"
 
@@ -13,20 +15,28 @@ int main()
 	
 	Greetings();
 
-	int loginOrOpen = isCurrent();
 
-	switch (loginOrOpen)
+	while (true)
 	{
-	case 0:
-	    std::cout << "You were given option " << loginOrOpen << std::endl;
-	    break;
-	case 1:
-	    std::cout << "You were given option " << loginOrOpen << std::endl;
-	    break;
-	case 2:
-	    std::cout << "You were given option " << loginOrOpen << std::endl;
-	    break;
+	    char login = isCurrent();
+	    
+	    if (login == 'y')
+	    {
+
+	    }
+	    else if (login == 'n')
+	    {
+		   system("CLS");
+		   std::cout << "Since you are not a returning customer, we would like you to register with us first." << std::endl;
+
+		   registration();
+	    }
+	    else if (login == 'g')
+	    {
+		   break;
+	    }
 	}
+
 
 	Goodbye();
 

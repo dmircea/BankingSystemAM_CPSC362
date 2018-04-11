@@ -12,66 +12,66 @@ class Customer
 {
 public:
 
-    //---------E-mail prototype member functions-------------------
-    void setEmail(std::string);
-    std::string getEmail();
+	//---------E-mail prototype member functions-------------------
+	void setEmail(std::string);
+	std::string getEmail();
 
-    //---------Age prototype member functions--------------------
-    int getAge();
-    void setAge(int);
+	//---------Age prototype member functions--------------------
+	int getAge();
+	void setAge(int);
 
-    //---------Genger prototype member function------------------
-    char getGender();
-    void setGender();
+	//---------Genger prototype member function------------------
+	char getGender();
+	void setGender(char);
 
-    //---------Address prototype member functions-------------------
-    //----set functions------//
-    void setNumberAddress(int);
-    void setHouseNum(int);
-    void setZipAddress(int);
-    void setStreetAddress(std::string);
-    void setCityAddress(std::string);
-    void setStateAddress(std::string);
-    //----get functions------//
-    int getNumberAddress();
-    int getHouseNum();
-    int getZipAddress();
-    std::string getStreetAddress();
-    std::string getCityAddress();
-    std::string getStateAddress();
+	//---------Address prototype member functions-------------------
+	//----set functions------//
+	void setNumberAddress(int);
+	void setHouseNum(int);
+	void setZipAddress(int);
+	void setStreetAddress(std::string);
+	void setCityAddress(std::string);
+	void setStateAddress(std::string);
+	//----get functions------//
+	int getNumberAddress();
+	int getHouseNum();
+	int getZipAddress();
+	std::string getStreetAddress();
+	std::string getCityAddress();
+	std::string getStateAddress();
+	//----------Name prototype member functions--------------------
+	//------set functions-------//
+	void setFirstName(std::string);
+	void setLastName(std::string);
+	void setMiddleInit(char);
+	//------get functions-------//
+	std::string getFirstName();
+	std::string getLastName();
+	char getMiddleInit();
 
-    //----------Name prototype member functions--------------------
-    //------set functions-------//
-    void setFirstName(std::string);
-    void setLastName(std::string);
-    void setMiddleInit(char);
-    //------get functions-------//
-    std::string getFirstName();
-    std::string getLastName();
-    char getMiddleInit();
+	//----------Phone prototype member functions------------------
+	//-------set functions-------//
+	void setAreaCode(std::string,int);
+	void setPhoneNumber(std::string,int);
+	void setType(Type, int);
+	void setUsed(bool, int);
+	//-------get functions-------//
+	std::string getAreaCode(int);
+	std::string getPhoneNumber(int);
+	Type getType(int);
+	bool getUsed(int);
 
-    //----------Phone prototype member functions------------------
-    //-------set functions-------//
-    void setAreaCode(int,int);
-    void setPhoneNumber(int,int);
-    void setType(Type, int);
-    void setUsed(bool, int);
-    //-------get functions-------//
-    int getAreaCode(int);
-    int getPhoneNumber(int);
-    Type getType(int);
-    bool getUsed(int);
-
-	Customer() 
+	Customer()
 	{
 
 	}
-	~Customer()
-	{
 
-	}
+
 
 	// Non-set/get Member functions
+	void printCustomerInfo();
+	bool createFinalProfile();
+	bool checkTentativeProfile();
 
 private:
 	Address _addressInfo;//Struct--> see Address.h header file
@@ -198,14 +198,14 @@ char inline Customer::getMiddleInit()
 }
 
 //------------Phone Scoped functions SETTING----------------------
-void inline Customer::setAreaCode(int newAreaCode, int whichPhone)
+void inline Customer::setAreaCode(std::string newAreaCode, int whichPhone)
 {
     if (whichPhone < 4 && whichPhone >= 0)
     {
 	   _phoneInfo[whichPhone].areaCode = newAreaCode;
     }
 }
-void inline Customer::setPhoneNumber(int newPhoneNum, int whichPhone)
+void inline Customer::setPhoneNumber(std::string newPhoneNum, int whichPhone)
 {
     if (whichPhone < 4 && whichPhone >= 0)
     {
@@ -228,19 +228,21 @@ void inline Customer::setUsed(bool newBool, int whichPhone)
 }
 
 //------------Phone Scoped functions GETTING--------------------------
-int inline Customer::getAreaCode(int whichPhone)
+std::string inline Customer::getAreaCode(int whichPhone)
 {
     if (whichPhone < 4 && whichPhone >= 0)
     {
 	   return _phoneInfo[whichPhone].areaCode;
     }
+    return false;
 }
-int inline Customer::getPhoneNumber(int whichPhone)
+std::string inline Customer::getPhoneNumber(int whichPhone)
 {
     if (whichPhone < 4 && whichPhone >= 0)
     {
 	   return _phoneInfo[whichPhone].number;
     }
+    return false;
 }
 Type inline Customer::getType(int whichPhone)
 {
@@ -248,6 +250,7 @@ Type inline Customer::getType(int whichPhone)
     {
 	   return _phoneInfo[whichPhone].type;
     }
+    return home;
 }
 bool inline Customer::getUsed(int whichPhone)
 {
@@ -255,4 +258,52 @@ bool inline Customer::getUsed(int whichPhone)
     {
 	   return _phoneInfo[whichPhone].usable;
     }
+    return false;
+}
+
+//--------------------Non-member variables scoped functions-------------------
+//+++++++++++++++++++++ IMPORTANT! IMPORTANT! IMPORTANT! +++++++++++++++++++++
+
+bool Customer::checkTentativeProfile()
+{
+    //  TO  DO	 FOR	LATER
+
+    return false;
+}
+bool Customer::createFinalProfile()
+{
+    //  TO  DO	 FOR	LATER
+
+    return false;
+}
+void Customer::printCustomerInfo()
+{
+    std::cout << "This is all accumulated information. Please check it carefully." << std::endl;
+
+    //  NAME
+    std::cout << "Name: " << _nameInfo.first << " " << _nameInfo.middle << ". " << _nameInfo.last << std::endl;
+
+    //  AGE
+    std::cout << "Age: " << _age << " years old." << std::endl;
+
+    //  GENDER
+    std::cout << "Gender: " << _gender << std::endl;
+
+    //  E-MAIL
+    std::cout << "E-mail: " << _email << std::endl;
+
+    //  ADDRESS
+    std::cout << "Address: " << _addressInfo.number << " " << _addressInfo.street << ", " << _addressInfo.city << ", "
+	   << _addressInfo.state << ", " << _addressInfo.zipcode << " #" << _addressInfo.houseNum << std::endl;
+
+    //  PHONE
+    for (int i = 0; i < 4; ++i)
+    {
+	   if (_phoneInfo[i].usable == true)
+	   {
+		  std::cout << "Phone #" << i+1 << ": (" << _phoneInfo[i].areaCode << ") - " << _phoneInfo[i].number << std::endl;
+	   }
+    }
+
+
 }

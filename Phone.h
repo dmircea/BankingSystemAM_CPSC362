@@ -5,8 +5,8 @@ enum Type { mobile, home, work };
 
 struct Phone
 {
-	int areaCode = 0;
-	int number = 0;
+	std::string areaCode = "0";
+	std::string number = "0";
 	Type type = home;
 	bool usable = false;
 };
