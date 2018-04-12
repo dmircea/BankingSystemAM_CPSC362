@@ -15,6 +15,7 @@ int main()
 	
 	Greetings();
 
+	Customer * user = nullptr;
 
 	while (true)
 	{
@@ -29,7 +30,7 @@ int main()
 		   system("CLS");
 		   std::cout << "Since you are not a returning customer, we would like you to register with us first." << std::endl;
 
-		   registration();
+		   user = registration(user);
 	    }
 	    else if (login == 'g')
 	    {
@@ -39,6 +40,7 @@ int main()
 
 
 	Goodbye();
+	delete user;
 
 	system("pause");
 	return 0;

@@ -202,13 +202,17 @@ void inputGender(Customer * customerStore)
 void confirmations(Customer * customerStore)
 {
     customerStore->printCustomerInfo();
-    std::cout << std::endl << "Is this information correct?";
-    system("pause");
+    //std::cout << std::endl << "Is this information correct?";
 }
 
-void registration()
+Customer * registration(Customer * someCustomer = nullptr)
 {
-    Customer * newCustomer = new Customer();
+    Customer * newCustomer = someCustomer;
+    if (someCustomer == nullptr)
+    {
+	   std::cout << "No previous information found. New customer created." << std::endl;
+	   newCustomer = new Customer();
+    }
     bool registering = true;
     int inputVar = 0;
 
@@ -240,18 +244,27 @@ void registration()
 			 inputGender(newCustomer);
 			 break;
 		  case 7:
-			 confirmations(newCustomer);
+			 if (newCustomer->checkTentativeProfile())
+			 {
+				confirmations(newCustomer);
+				char ans = 'N';
+				std::cout << "Is this information what you wish to give us?(Input Y if yes.)";
+				std::cin >> ans;
+				if (ans != 'Y') break;
+
+			 }
+			 else break;
 			 newCustomer->createFinalProfile();
 			 break;
 		  }
 		  if (inputVar == 8)
 		  {
-			 delete newCustomer;
-			 return;
+			 
+			 return newCustomer;
 		  }
 		  else if (inputVar == 9)
 		  {
-			 //	 Should Close the Application. Only break out of loop for now.
+			 //	 Closes the application after deleting newCustomer.
 			 delete newCustomer;
 			 exit(0);
 		  }
@@ -264,5 +277,5 @@ void registration()
     }
 
 
-    delete newCustomer;
+    return newCustomer;
 }

@@ -266,9 +266,93 @@ bool inline Customer::getUsed(int whichPhone)
 
 bool Customer::checkTentativeProfile()
 {
-    //  TO  DO	 FOR	LATER
+    std::cout << "Checking the information that was placed in this account." << std::endl;
+    bool allCorrect = true;
 
-    return false;
+
+    //  Checking for name limit
+    if (_nameInfo.first.length() > 25)
+    {
+	   std::cout << "Your first name exceeds the 25 character limit!" << std::endl;
+	   allCorrect = false;
+    }
+    if (_nameInfo.first.length() == 0)
+    {
+	   std::cout << "Please input your first name!" << std::endl;
+	   allCorrect = false;
+    }
+
+    if (_nameInfo.last.length() > 30)
+    {
+	   std::cout << "Your last name exceeds the 30 character limit!" << std::endl;
+	   allCorrect = false;
+    }
+    if (_nameInfo.last.length() == 0)
+    {
+	   std::cout << "Please input your last name!" << std::endl;
+	   allCorrect = false;
+    }
+
+    //  Check the age of the customer
+    if (_age < 16)
+    {
+	   std::cout << "You must be at least 16 to make an account! Please check your age." << std::endl;
+	   allCorrect = false;
+    }
+    if (_age > 120)
+    {
+	   std::cout << "There is an error in your age!" << std::endl;
+	   allCorrect = false;
+    }
+
+    //  Check the Gender of the customer
+    if (_gender == ' ')
+    {
+	   std::cout << "Please input your gender!" << std::endl;
+	   allCorrect = false;
+    }
+
+    //  E-mail checking
+    if (_email.length() == 0)
+    {
+	   std::cout << "Please input an e-mail!" << std::endl;
+	   allCorrect = false;
+    }
+    else if (_email.length() > 50)
+    {
+	   std::cout << "The e-mail exceeds the 50 character limit!" << std::endl;
+	   allCorrect = false;
+    }
+    else	  //	 This will make sure that there is an "@" symbol in the string and only one!
+    {
+	   bool containsAt = false;
+	   for (std::string::iterator it = _email.begin(); it != _email.end(); ++it)
+	   {
+		  if (*it == '@' && containsAt == true)
+		  {
+			 containsAt = false;
+			 break;
+		  }
+		  if (*it == '@')
+		  {
+			 containsAt = true;
+		  }
+	   }
+	   if (!containsAt)
+	   {
+		  allCorrect = false;
+		  std::cout << "The e-mail in memory should not work. Please revise it!" << std::endl;
+	   }
+    }
+
+    if (allCorrect)
+    {
+	   std::cout << "Everything is correct!" << std::endl;
+    }
+
+    system("pause");
+
+    return allCorrect;
 }
 bool Customer::createFinalProfile()
 {
